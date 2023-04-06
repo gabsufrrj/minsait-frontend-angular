@@ -1,5 +1,5 @@
 import { Component, Directive, Injectable, Input, NgModule, Output, Pipe } from '@angular/core';
-import { ICliente } from 'src/app/interfaces/ICliente.';
+import { ICliente } from 'src/app/interfaces/ICliente';
 import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({

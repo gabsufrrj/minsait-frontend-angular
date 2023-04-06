@@ -1,0 +1,60 @@
+<h2 class="display-5 my-3 mx-2">Cadastro de Clientes</h2>
+<hr>
+
+<!-- <div>{{form.value | json}}</div> -->
+
+<div class="container-fluid">
+  <form [formGroup]="form" (ngSubmit)="createCustomer()">
+    <div class="row">
+      <div class="col-8">
+        <div class="mb-3">
+          <label for="nome" class="form-label">Nome Completo</label>
+          <input type="text" class="form-control" id="nome" formControlName="nome">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="mb-3">
+          <label for="cpf" class="form-label">CPF</label>
+          <input type="number" class="form-control" id="cpf" formControlName="cpf" min="0">
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="mb-3">
+          <label for="rua" class="form-label">Rua</label>
+          <input type="text" class="form-control" id="rua" formControlName="rua">
+        </div>
+      </div>
+      <div class="col-1">
+        <div class="mb-3">
+          <label for="numero" class="form-label">Número</label>
+          <input type="number" class="form-control" id="numero" formControlName="numero" min="0">
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="mb-3">
+          <label for="complemento" class="form-label">Complemento</label>
+          <input type="text" class="form-control" id="complemento">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="mb-3">
+          <label for="cep" class="form-label">CEP</label>
+          <input type="number" class="form-control" id="cep" formControlName="cep" min="0">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="mb-3">
+          <label for="rendimentoMensal" class="form-label">Rendimento Mensal</label>
+          <input type="number" class="form-control" id="rendimentoMensal" formControlName="rendimentoMensal"  min="0">
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="mb-3">
+          <label for="telefone" class="form-label">Telefone</label>
+          <input type="number" class="form-control" id="telefone" formControlName="telefone" min="0">
+        </div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!form.valid" class="btn btn-dark btn-lg my-5">Cadastrar</button>
+  </form>
+</div>
