@@ -1,7 +1,10 @@
 <h1 class="display-5">Clientes</h1>
 <hr>
 
-<table class="table">
+<button type="button" class="btn btn-warning mx-2 mb-4">Novo Cliente</button>
+
+<br>
+<table class="table table-bordered table-hover">
   <thead>
     <tr>
       <th scope="col">CPF</th>
@@ -19,11 +22,14 @@
       <th scope="row">{{cliente.cpf}}</th>
       <td>{{cliente.nome}}</td>
       <td>{{cliente.telefone}}</td>
-      <td>{{cliente.rendimentoMensal}}</td>
+      <td>{{cliente.rendimentoMensal | currency: 'BRL'}}</td>
       <td>{{cliente.rua}}</td>
       <td>{{cliente.numero}}</td>
       <td>{{cliente.cep}}</td>
-      <td>Botão</td>
+      <td>
+        <button type="button" class="btn btn-dark mx-1">Editar</button>
+        <button type="button" class="btn btn-danger">Remover</button>
+      </td>
     </tr>
   </tbody>
 </table>
