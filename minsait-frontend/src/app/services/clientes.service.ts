@@ -19,7 +19,17 @@ export class ClientesService {
     return this.http.post(`${this.api}`, cliente);
   }
 
+  findCustomerByCpf(cpf: number) {
+    return this.http.get<ICliente>(`${this.api}/${cpf}`);
+  }
+
   updateCustomer(cpf: number, cliente: ICliente) {
     return this.http.put(`${this.api}/${cpf}`, cliente);
+  }
+
+  deleteCustomer(cpf: number) {
+    console.log(`${this.api}/${cpf}`);
+
+    return this.http.delete(`${this.api}/${cpf}`);
   }
 }
