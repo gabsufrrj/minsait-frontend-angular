@@ -7,6 +7,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CadastrarAtualizarClientesComponent } from './pages/cadastrar-atualizar-clientes/cadastrar-atualizar-clientes.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     ClientesComponent,
     NavbarComponent,
+    CadastrarAtualizarClientesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
