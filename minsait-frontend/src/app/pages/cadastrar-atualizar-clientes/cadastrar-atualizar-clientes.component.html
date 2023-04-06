@@ -1,4 +1,4 @@
-<h2 class="display-5 my-3 mx-2">Cadastro de Clientes</h2>
+<h2 class="display-5 my-3 mx-2">{{clienteCpf ? 'Editar cliente' : 'Cadastrar clientes'}}</h2>
 <hr>
 
 <!-- <div>{{form.value | json}}</div> -->
@@ -55,6 +55,6 @@
         </div>
       </div>
     </div>
-    <button type="submit" [disabled]="!form.valid" class="btn btn-dark btn-lg my-5">Cadastrar</button>
+    <button type="submit" [disabled]="!form.valid" class="btn btn-dark btn-lg my-5">{{clienteCpf ? 'Salvar' : 'Cadastrar'}}</button>
   </form>
 </div>
