@@ -36,11 +36,13 @@ export class CadastrarAtualizarClientesComponent {
         })
       });
     } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Dados inválidos',
-        text: 'Digite apenas números',
-      })
+      if (!Number(this.clienteCpf)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Dados inválidos',
+          text: 'Digite apenas números',
+        })
+      }
     }
   }
 
@@ -56,11 +58,12 @@ export class CadastrarAtualizarClientesComponent {
 
   createCustomer() {
     const customer: ICliente = this.form.value as ICliente;
-    this.clientesService.createCustomer(customer).subscribe(
-      (result) => {
+
+    if (this.clienteCpf === customer.cpf) {
+      this.clientesService.updateCustomer(customer.cpf, customer).subscribe((result) => {
         Swal.fire({
           title: 'Os dados estão corretos?',
-          text: 'Você irá cadastrar um novo cliente em nossa base de dados!',
+          text: `Você irá atualizar o cliente de CPF ${this.clienteCpf} em nossa base de dados!`,
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -68,13 +71,32 @@ export class CadastrarAtualizarClientesComponent {
           confirmButtonText: 'Sim, os dados estão corretos!',
         }).then((result) => {
           if (result.isConfirmed) {
-            Swal.fire('Sucesso!', 'Cliente cadastrado com sucesso.', 'success');
+            Swal.fire('Sucesso!', 'Cliente atualizado com sucesso.', 'success');
           }
         });
-      },
-      (error) => {
-        console.log(error.message);
-      }
-    );
+
+      })
+    } else {
+      this.clientesService.createCustomer(customer).subscribe(
+        (result) => {
+          Swal.fire({
+            title: 'Os dados estão corretos?',
+            text: 'Você irá cadastrar um novo cliente em nossa base de dados!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, os dados estão corretos!',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire('Sucesso!', 'Cliente cadastrado com sucesso.', 'success');
+            }
+          });
+        },
+        (error) => {
+          console.log(error.message);
+        }
+      );
+    }
   }
 }
