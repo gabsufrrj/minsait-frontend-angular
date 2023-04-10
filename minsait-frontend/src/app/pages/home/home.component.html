@@ -1,6 +1,25 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col bg-primary">Coluna 1</div>
-    <div class="col bg-danger">Coluna 2</div>
+<main>
+  <h1 class="visually-hidden">Minsait</h1>
+
+  <div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="/src/images/minsait.jpeg" alt="minsait-logo" width="72" height="57">
+    <h1 class="display-5 fw-bold">Minsait</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Esta página tem como objetivo simular um sistema de gerenciamento de clientes. Através do consumo de uma API desenvolvida em JAVA, é possível listar, cadastrar, atualizar e remover clientes do banco de dados. A página também conta com elementos como botões interativvos e possui desing responsivo. </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a [routerLink]="['/clientes/cadastro']" routerLinkActive="router-link-active"  class="btn btn-dark btn-lg px-4 gap-3">Cadastrar novo cliente</a>
+        <a [routerLink]="['/clientes']" routerLinkActive="router-link-active"  class="btn btn-outline-secondary btn-lg px-4">Lista de Clientes</a>
+      </div>
+    </div>
   </div>
-</div>
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-muted">© Designed by Gabriel Gregório, 2023</span>
+    </div>
+    <span class="mb-3 mb-md-0 text-muted me-2">github.com/gabsufrrj</span>
+  </footer>
+</main>
+
