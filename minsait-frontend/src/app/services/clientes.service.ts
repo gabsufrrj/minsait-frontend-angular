@@ -16,6 +16,8 @@ export class ClientesService {
   }
 
   createCustomer(cliente: ICliente) {
+    // console.log('CRIANDO');
+
     return this.http.post(`${this.api}`, cliente);
   }
 
@@ -24,6 +26,8 @@ export class ClientesService {
   }
 
   updateCustomer(cpf: number, cliente: ICliente) {
+    // console.log('ATUALIZANDO');
+
     return this.http.put(`${this.api}/${cpf}`, cliente);
   }
 
