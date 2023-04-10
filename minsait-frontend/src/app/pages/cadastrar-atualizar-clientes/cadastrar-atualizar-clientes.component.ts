@@ -17,6 +17,13 @@ export class CadastrarAtualizarClientesComponent {
 
   ngOnInit() {
     this.clienteCpf = Number(this.route.snapshot.paramMap.get('cpf'));
+    if (isNaN(this.clienteCpf)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Dados inválidos',
+        text: 'Digite apenas números',
+      })
+    }
     if (this.clienteCpf) {
       this.clientesService.findCustomerByCpf(this.clienteCpf).subscribe((cliente: ICliente) => {
         this.form.setValue({
@@ -35,14 +42,6 @@ export class CadastrarAtualizarClientesComponent {
           text: 'Cliente não encontrado em nossa base de dados',
         })
       });
-    } else {
-      if (!Number(this.clienteCpf)) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Dados inválidos',
-          text: 'Digite apenas números',
-        })
-      }
     }
   }
 
