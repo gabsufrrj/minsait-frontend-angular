@@ -5,6 +5,7 @@ import { ClientesComponent } from './pages/clientes/clientes.component';
 import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'clientes', component: ClientesComponent },
   { path: 'clientes/cadastro', component: CadastrarAtualizarClientesComponent },
