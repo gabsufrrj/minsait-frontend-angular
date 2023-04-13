@@ -19,7 +19,7 @@ export class ClientesComponent {
     });
   }
 
-  deleteCustomer(cpf: number) {
+  deleteCustomer(cpf: string) {
     console.log(cpf);
     this.clientesService.deleteCustomer(cpf).subscribe(_result => {
       this.ngOnInit();
