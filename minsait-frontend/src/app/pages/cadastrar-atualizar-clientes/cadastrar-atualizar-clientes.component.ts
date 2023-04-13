@@ -11,73 +11,85 @@ import Swal from 'sweetalert2';
   styleUrls: ['./cadastrar-atualizar-clientes.component.css'],
 })
 export class CadastrarAtualizarClientesComponent {
-  constructor(private clientesService: ClientesService, private route: ActivatedRoute) {}
+  constructor(
+    private clientesService: ClientesService,
+    private route: ActivatedRoute
+  ) {}
 
-  clienteCpf = 0;
+  clienteCpf = '';
 
   ngOnInit() {
-    this.clienteCpf = Number(this.route.snapshot.paramMap.get('cpf'));
-    if (isNaN(this.clienteCpf)) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Dados inválidos',
-        text: 'Digite apenas números',
-      })
-    }
+    this.clienteCpf = this.route.snapshot.paramMap.get('cpf') as string;
+
     if (this.clienteCpf) {
-      this.clientesService.findCustomerByCpf(this.clienteCpf).subscribe((cliente: ICliente) => {
-        this.form.setValue({
-          cpf: cliente.cpf,
-          nome: cliente.nome,
-          rua: cliente.rua,
-          numero: cliente.numero,
-          cep: cliente.cep,
-          rendimentoMensal: cliente.rendimentoMensal,
-          telefone: cliente.telefone
-        })
-      }, error => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Digite um CPF já cadastrado',
-          text: 'Cliente não encontrado em nossa base de dados',
-        })
-      });
+      this.clientesService
+        .findCustomerByCpf(this.clienteCpf)
+        .subscribe((cliente: ICliente) => {
+          this.form.setValue({
+            cpf: cliente.cpf,
+            nome: cliente.nome,
+            rua: cliente.rua,
+            numero: cliente.numero,
+            cep: cliente.cep,
+            rendimentoMensal: cliente.rendimentoMensal,
+            telefone: cliente.telefone,
+          });
+        });
     }
   }
 
   form = new FormGroup({
     nome: new FormControl('', Validators.required),
-    cpf: new FormControl(0, Validators.required),
-    telefone: new FormControl(0, Validators.required),
+    cpf: new FormControl('', Validators.required),
+    telefone: new FormControl('', Validators.required),
     rendimentoMensal: new FormControl(0, Validators.required),
     rua: new FormControl('', Validators.required),
-    numero: new FormControl(0, Validators.required),
-    cep: new FormControl(0, Validators.required),
+    numero: new FormControl('', Validators.required),
+    cep: new FormControl('', Validators.required),
   });
 
   createCustomer() {
     const customer: ICliente = this.form.value as ICliente;
 
     if (this.clienteCpf === customer.cpf) {
-      this.clientesService.updateCustomer(customer.cpf, customer).subscribe((result) => {
-        Swal.fire({
-          title: 'Os dados estão corretos?',
-          text: `Você irá atualizar o cliente de CPF ${this.clienteCpf} em nossa base de dados!`,
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Sim, os dados estão corretos!',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire('Sucesso!', 'Cliente atualizado com sucesso.', 'success');
-          }
-        });
-
-      })
+      this.clientesService.updateCustomer(customer.cpf, customer).subscribe(
+        (_result) => {
+          Swal.fire({
+            title: 'Os dados estão corretos?',
+            text: `Você irá atualizar o cliente de CPF ${this.clienteCpf} em nossa base de dados!`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, os dados estão corretos!',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Sucesso!',
+                'Cliente atualizado com sucesso.',
+                'success'
+              );
+            }
+          });
+        },
+        (error) => {
+          const { defaultMessage } = error.error.errors[0];
+          // const [ errors ] = error.error;
+          // const variavel = errors.reduce((acc: string, curr: any) => {
+          //   const {defaultMessage} = curr;
+          //   return acc.concat("\n").concat(defaultMessage)
+          //   }, "")
+          Swal.fire({
+            icon: 'error',
+            title: 'Dados inválidos',
+            text: `${defaultMessage}`,
+          });
+          console.log(error);
+        }
+      );
     } else {
       this.clientesService.createCustomer(customer).subscribe(
-        (result) => {
+        (_result) => {
           Swal.fire({
             title: 'Os dados estão corretos?',
             text: 'Você irá cadastrar um novo cliente em nossa base de dados!',
@@ -88,12 +100,22 @@ export class CadastrarAtualizarClientesComponent {
             confirmButtonText: 'Sim, os dados estão corretos!',
           }).then((result) => {
             if (result.isConfirmed) {
-              Swal.fire('Sucesso!', 'Cliente cadastrado com sucesso.', 'success');
+              Swal.fire(
+                'Sucesso!',
+                'Cliente cadastrado com sucesso.',
+                'success'
+              );
             }
           });
         },
         (error) => {
-          console.log(error.message);
+          const { defaultMessage } = error.error.errors[0];
+          Swal.fire({
+            icon: 'error',
+            title: 'Dados inválidos',
+            text: `${defaultMessage}`,
+          });
+          console.log(error);
         }
       );
     }
