@@ -15,7 +15,7 @@
       <div class="col-3">
         <div class="mb-3">
           <label for="cpf" class="form-label">CPF</label>
-          <input type="number" class="form-control" id="cpf" formControlName="cpf" min="0">
+          <input type="text" mask="000.000.000-00" class="form-control" id="cpf" formControlName="cpf" min="0">
         </div>
       </div>
       <div class="col-8">
@@ -39,19 +39,19 @@
       <div class="col-3">
         <div class="mb-3">
           <label for="cep" class="form-label">CEP</label>
-          <input type="number" class="form-control" id="cep" formControlName="cep" min="0">
+          <input type="text" mask="00.000-000" class="form-control" id="cep" formControlName="cep" min="0">
         </div>
       </div>
       <div class="col-3">
         <div class="mb-3">
           <label for="rendimentoMensal" class="form-label">Rendimento Mensal</label>
-          <input type="number" class="form-control" id="rendimentoMensal" formControlName="rendimentoMensal"  min="0">
+          <input type="text" prefix="R$ " mask="separator.2"  class="form-control" id="rendimentoMensal" formControlName="rendimentoMensal"  min="0">
         </div>
       </div>
       <div class="col-5">
         <div class="mb-3">
           <label for="telefone" class="form-label">DDD + Telefone</label>
-          <input type="number" class="form-control" id="telefone" formControlName="telefone" min="0">
+          <input prefix="+55 " mask="(00) 0000-0000 || (00) 0 0000-0000" type="text" class="form-control" id="telefone" formControlName="telefone" min="0">
         </div>
       </div>
     </div>
