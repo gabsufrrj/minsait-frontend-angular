@@ -42,7 +42,7 @@ export class CadastrarAtualizarClientesComponent {
     nome: new FormControl('', Validators.required),
     cpf: new FormControl('', Validators.required),
     telefone: new FormControl('', Validators.required),
-    rendimentoMensal: new FormControl(0, Validators.required),
+    rendimentoMensal: new FormControl('', Validators.required),
     rua: new FormControl('', Validators.required),
     numero: new FormControl('', Validators.required),
     cep: new FormControl('', Validators.required),
