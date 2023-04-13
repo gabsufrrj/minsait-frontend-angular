@@ -10,9 +10,9 @@ Esse repositório foi criado para realizar o desafio técnico de Frontend do pro
 
 ## Versões
 
-* Angular +
-* Node +
-* Typescript
+* Angular 15.2.5
+* Node 16.17.0
+* Typescript 4.9.5
 
 ## Como executar
 
