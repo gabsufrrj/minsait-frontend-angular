@@ -1,9 +1,9 @@
 export interface ICliente {
-  cpf: number;
+  cpf: string;
   nome: string;
-  telefone: number;
+  telefone: string;
   rendimentoMensal: number;
   rua: string;
-  numero: number;
-  cep: number;
+  numero: string;
+  cep: string;
 }
