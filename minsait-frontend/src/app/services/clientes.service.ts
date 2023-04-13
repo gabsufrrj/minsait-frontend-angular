@@ -4,12 +4,12 @@ import { environment } from 'src/environment/environment';
 import { ICliente } from '../interfaces/ICliente';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ClientesService {
   endpoint = '';
   api = environment.api;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   findAllCustomers() {
     return this.http.get<ICliente[]>(`${this.api}`);
@@ -21,19 +21,17 @@ export class ClientesService {
     return this.http.post(`${this.api}`, cliente);
   }
 
-  findCustomerByCpf(cpf: number) {
+  findCustomerByCpf(cpf: string) {
     return this.http.get<ICliente>(`${this.api}/${cpf}`);
   }
 
-  updateCustomer(cpf: number, cliente: ICliente) {
+  updateCustomer(cpf: string, cliente: ICliente) {
     // console.log('ATUALIZANDO');
 
     return this.http.put(`${this.api}/${cpf}`, cliente);
   }
 
-  deleteCustomer(cpf: number) {
-    console.log(`${this.api}/${cpf}`);
-
+  deleteCustomer(cpf: string) {
     return this.http.delete(`${this.api}/${cpf}`);
   }
 }
