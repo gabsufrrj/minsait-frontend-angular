@@ -5,5 +5,6 @@ export interface ICliente {
   rendimentoMensal: string;
   rua: string;
   numero: string;
+  complemento?: string;
   cep: string;
 }
