@@ -33,6 +33,7 @@ export class CadastrarAtualizarClientesComponent {
             cep: cliente.cep,
             rendimentoMensal: cliente.rendimentoMensal,
             telefone: cliente.telefone,
+            complemento: cliente.complemento,
           });
         });
     }
@@ -45,6 +46,7 @@ export class CadastrarAtualizarClientesComponent {
     rendimentoMensal: new FormControl('', Validators.required),
     rua: new FormControl('', Validators.required),
     numero: new FormControl('', Validators.required),
+    complemento: new FormControl(),
     cep: new FormControl('', Validators.required),
   });
 
@@ -74,11 +76,6 @@ export class CadastrarAtualizarClientesComponent {
         },
         (error) => {
           const { defaultMessage } = error.error.errors[0];
-          // const [ errors ] = error.error;
-          // const variavel = errors.reduce((acc: string, curr: any) => {
-          //   const {defaultMessage} = curr;
-          //   return acc.concat("\n").concat(defaultMessage)
-          //   }, "")
           Swal.fire({
             icon: 'error',
             title: 'Dados inválidos',
